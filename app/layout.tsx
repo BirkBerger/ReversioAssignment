@@ -5,6 +5,7 @@ import "./globals.scss";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  weight: ['500', '600', '700'],
 });
 
 const geistMono = Geist_Mono({
@@ -23,11 +24,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
-    </html>
+    <html lang="en">
+            <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+                <main className="flex flex-col gap-8 px-[4vw] py-[5vh]">
+
+                    <div className="flex place-content-between items-end">
+                        <h1>
+                            Some Header
+                        </h1>
+
+                        [ some logo ]
+                    </div>
+
+                    { children }
+
+                </main>
+            </body>
+        </html>
   );
 }
