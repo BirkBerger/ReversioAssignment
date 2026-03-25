@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+:root {
+    background: rgb(130, 184, 246);
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-geist-sans);
+}
+
+h1, h2, h3, button {
+    font-family: var(--header-font);
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+p {
+    font-size: 14px;
+    margin-bottom: 10px
+}
