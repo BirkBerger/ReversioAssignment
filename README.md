@@ -17,7 +17,7 @@ To get project
 
 ```bash
 git clone https://github.com/BirkBerger/ReversioAssignment.git
-cd reversio-assignment
+cd ReversioAssignment
 ```
 
 Create file .env.local in root
