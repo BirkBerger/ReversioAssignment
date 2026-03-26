@@ -3,6 +3,7 @@
 import { useState, KeyboardEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import PageLayout from './components/PageLayout';
+import shopifyService, { Order } from './services/shopify-service';
 
 export default function Home() {
 
@@ -14,10 +15,16 @@ export default function Home() {
     const emailRegex = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
     const inputClasses = "my-4 border-b-1 border-[gray] placeholder:text-[gray] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none outline-none";
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         if(!isValidInputs()) return;
-        saveInLocalStorage();
-        router.push("/createreturn");
+
+        const order = await shopifyService.getOrder(orderId);
+        if (!order) {
+            setErrorMsg("We couldn't find this order. Please make sure the ID is correct.")
+        } else {
+            saveInLocalStorage(order);
+            router.push("/createreturn");
+        }
     }
 
     const isValidInputs = () => {
@@ -34,8 +41,8 @@ export default function Home() {
         return false;
     }
 
-    const saveInLocalStorage = () => {
-        localStorage.setItem("order_id", orderId);
+    const saveInLocalStorage = (order: Order) => {
+        localStorage.setItem("order", JSON.stringify(order));
         localStorage.setItem("email_address", email);
     }
 
@@ -44,8 +51,8 @@ export default function Home() {
     }
 
     return (
-        <PageLayout title="Find order">
-            <div className="flex flex-col bg-[#e5e5e5] rounded-lg p-5">
+        <PageLayout title="Fetch order">
+            <div className="flex flex-col bg-[#e5e5e5] rounded-lg p-5 min-h-40">
                 <input className={inputClasses}
                     id="order-id"
                     type="text"
@@ -69,7 +76,7 @@ export default function Home() {
                 onClick={() => handleSubmit()}>
                 Go to order
             </button>
-            <div className="animate-fadeIn"
+            <div className="animate-fadeIn text-center"
                 key={errorMsg}>
                 {errorMsg}
             </div>
