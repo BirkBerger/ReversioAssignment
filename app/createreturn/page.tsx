@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from 'next/navigation';
 import PageLayout from "../components/PageLayout";
 import shopifyService, { Order } from "../services/shopify-service";
+import Button from "../components/Button";
 
 function CreateReturn() {
 
@@ -34,7 +35,7 @@ function CreateReturn() {
 
     return (
         <PageLayout title="Your order">
-            <div className="border-1 border-[#c1c1c1] rounded-lg p-5 min-h-40">
+            <div className="border-1 border-[#4f4f4f] bg-[#ffffff6e] rounded-lg p-5 min-h-40">
                 {order && email && (
                     <dl className="flex flex-col gap-5">
                         <span>
@@ -62,12 +63,11 @@ function CreateReturn() {
                     </div>
                 )}
             </div>
-            <button className="text-white bg-[blue] hover:bg-[#0c0cbf] cursor-pointer rounded-lg py-1 px-3" 
-                onClick={() => order || !isInitialized ? handleCreateReturn() : goBack()}>
-                    { !isInitialized ? "..." : order ? "Create return" : "Go back" }
-            </button>
+            <Button onClick={() => order ? handleCreateReturn() : goBack()}>
+                { order ? "Create return" : "Go back" }
+            </Button>
             {feedbackMsg && (
-                <div className="animate-fadeIn text-center"
+                <div className="animate-fadeIn"
                     key={feedbackMsg}>
                     {feedbackMsg}
                 </div>

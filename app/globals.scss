@@ -1,20 +1,23 @@
 @import "tailwindcss";
 
 :root {
-    // background: rgb(130, 184, 246);
+    background: radial-gradient(circle at 50% 80%,rgba(77, 107, 134, 1) 0%, rgba(245, 246, 248, 1) 100%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 body {
     margin: 0;
-    font-family: var(--font-geist-mono);
+    font-family: var(--paragraph-font);
 }
 
 h1, h2, button, dt {
-    font-family: var(--font-geist-sans);
+    font-family: var(--header-font);
 }
 
 h1 {
-    font-size: 1.75rem;
+    font-size: 1.7rem;
     font-weight: 700;
     line-height: 1.2;
     color: #111111;

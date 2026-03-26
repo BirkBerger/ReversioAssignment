@@ -3,6 +3,7 @@
 import { useState, KeyboardEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import PageLayout from './components/PageLayout';
+import Button from './components/Button';
 import shopifyService, { Order } from './services/shopify-service';
 
 export default function Home() {
@@ -52,7 +53,7 @@ export default function Home() {
 
     return (
         <PageLayout title="Fetch order">
-            <div className="flex flex-col bg-[#e5e5e5] rounded-lg p-5 min-h-40">
+            <div className="flex flex-col bg-[#eeeeee] rounded-lg p-5 min-h-40">
                 <input className={inputClasses}
                     id="order-id"
                     type="text"
@@ -72,11 +73,10 @@ export default function Home() {
                     >
                 </input>
             </div>
-            <button className="text-white bg-[blue] hover:bg-[#0c0cbf] cursor-pointer rounded-lg py-1 px-3"
-                onClick={() => handleSubmit()}>
+            <Button onClick={handleSubmit}>
                 Go to order
-            </button>
-            <div className="animate-fadeIn text-center"
+            </Button>
+            <div className="animate-fadeIn"
                 key={errorMsg}>
                 {errorMsg}
             </div>
