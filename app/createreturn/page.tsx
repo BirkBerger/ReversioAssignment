@@ -33,6 +33,8 @@ function CreateReturn() {
         setIsInitialized(true);
     }, [])
 
+    if (!isInitialized) return null;
+
     return (
         <PageLayout title="Your order">
             <div className="border-1 border-[#4f4f4f] bg-[#ffffff6e] rounded-lg p-5 min-h-40">
@@ -57,7 +59,7 @@ function CreateReturn() {
                         </span>
                     </dl>
                 )}
-                {isInitialized && (!order || !email) && (
+                {(!order || !email) && (
                     <div className="text-center">
                         We couldn't find your order. Go back to enter the order details.
                     </div>
